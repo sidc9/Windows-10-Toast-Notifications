@@ -118,6 +118,14 @@ class ShowNotification(eg.ActionBase):
 		msg="No Message",
 		duration=3):
 
+		if(msg[0] == '{' and msg[-1] == '}'):
+			varName = msg[1:-1]
+			exec ("%s = %s" % ('msg', varName))
+
+		if(title[0] == '{' and title[-1] == '}'):
+			varName = title[1:-1]
+			exec ("%s = %s" % ('title', varName))
+
 		self.winballoon.balloon_tip(title, msg, duration)
 
 	def Configure(self, 
